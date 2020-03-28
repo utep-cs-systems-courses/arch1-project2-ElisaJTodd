@@ -1,15 +1,24 @@
 ## Description
-This directory contains demo programs that demonstrate basic I/O using timer and button interrupts.
 
-Program | Description
-------- | -----------
-Blink   | Uses timer interrupts to flash the LEDs in a silly pattern.
-Button  | Uses interrupts to detect when a switch is pressed or released.
-Buzzer  | Emits a single continuous note from the buzzer.
-Dim     | Uses Pulse Width Modulation (PWN) to illuminate an LED dimly.
+A song plays once when a switch is pressed. When nothing is playing the red
+led is on, when a switch is pressed the green light is turned on, and while a
+song is playing the green light dims.
+
+This table  shows each file and its functionality
+
+File                    | Description
+----------------------- | -----------------------------
+buzzer.c                | Stores an array for each song for each song to play,
+iterates through that array and plays the notes.  
+led.c                   | Turns red led on when nothing is playing, turns
+green led on and green off when a switch is pressed
+musicBox.c              | Has the main to initialize led, switches and the watchdog
+p2_interrupt_handler.c  | Reads switches from P2
+stateMachines.c         | Reads the song according to the switch and uses
+watchdog to cause the green light to dim while a song is playing 
+switches.c              | Receives input from any switch pressed
+wdInterruptHandler.c    | Uses timer to play notes on buzzer and dim the green light
 
 ## How to Use
 
-The Makefile in this direcory contains rules to run the Makefile in each demo directory. Use **make** in this directory to build all demo programs and the timer library. Once the programs are built, you can load the program onto the MSP430 by changing into the corresponding demo directory and using **make load**.
-
-You may use **mspdebug rf2500 "erase"** to clear a program from the MSP430.
+Type "make load"
