@@ -26,10 +26,13 @@ void led_update(){
     ledFlags = 0;
     ledFlags |= switch_state_down ? LED_GREEN : 0;//turn on green if switch down
     
-    green_on = switch_state_down;
-    red_on = !green_on;
-    if(ledFlags == LED_GREEN){
+    if(switch_state_down){
+      green_on = 1;
+      red_on = 0;
       buzzer_init();
+    }else{
+      green_on = 0;
+      red_on = 1;
     }
   }
   if(led_changed || switch_state_changed){

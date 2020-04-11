@@ -2,6 +2,8 @@
 #include "libTimer.h"
 #include "buzzer.h"
 #include "stateMachines.h"
+#include "led.h"
+
 //{2273, 2551, 3405, 3608, 4050, 4545, 5102 , 5406, 6811, 0, 0}; // high to low
 
 int susanna[] = {0, 7644, 6811, 6067, 5102, 5102, 4545, 5102, 6067, 7644, 6811, 6067, 6067, 6811, 7644,
@@ -52,6 +54,12 @@ void play_notes() {
      marked by the array of the respective song*/
   buzzer_set_period(song[i]);
   i++;
+  if(i>n){
+    red_on = 1;
+    green_on = 0;
+    led_changed = 1;
+    led_update();
+  }
 }
 
 void buzzer_set_period(short cycles)

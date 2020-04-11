@@ -11,7 +11,7 @@ AS              = msp430-elf-as
 all: songs.elf 
 
 #additional rules for files
-songs.elf: ${COMMON_OBJECTS} p1_interrupt_handler.o wdInterruptHandler.o stateMachines.o buzzer.o led.o switches.o musicBox.o ../lib/libTimer.a
+songs.elf: ${COMMON_OBJECTS} p1_interrupt_handler.o wdInterruptHandler.o stateMachines.o led_state_s.o buzzer.o led.o switches.o musicBox.o ../lib/libTimer.a
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
 
 load: songs.elf
